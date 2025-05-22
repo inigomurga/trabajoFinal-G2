@@ -33,9 +33,17 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     try:
         payload = msg.payload.decode()
-        data = json.loads(payload)
-        
-        print(f"[RECIVIDO] {data}")
+        dataJson = json.loads(payload)
+
+        dato = SensorData(**dataJson)
+
+        print(f"[Dato validado] {dato}")
+        # Guardar en Elasticsearch
+        es.index(index=INDEX_NAME, document=dato.model_dump())
+        logging.info(f"Guardado en Elasticsearch: {dato.model_dump()}")
+    
+    except ValidationError as ve:
+        logging.warning(f"Dato inválido: {ve}")
     except Exception as e:
         logging.error(f"Error procesando mensaje: {e}")
 
