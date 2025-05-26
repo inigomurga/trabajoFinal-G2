@@ -18,7 +18,7 @@ INDEX_NAME = "sensores"
 
 # Validación con Pydantic específicas
 class SensorData(BaseModel):
-    ID: str
+    ID_maquina: int
     timestamp: datetime
     temperatura: float = Field(..., le=149)
     vibracion: float = Field(..., le=19)

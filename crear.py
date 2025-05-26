@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt
 from datetime import datetime, timezone
 
 # Definir los nombres de las máquinas y sensores
-maquinas = [f"maquina_{i+1}" for i in range(5)]
+maquinas = [i+1 for i in range(5)]
 sensores = ["temperatura", "vibracion", "corriente_electrica", "rpm_cabezal"]
 
 ultimos_valores = {m: {s: None for s in sensores} for m in maquinas}
@@ -73,7 +73,7 @@ while True:
     timestamp = datetime.now(timezone.utc).isoformat()
 
     for maquina in maquinas:
-        lectura = {"ID": maquina, "timestamp": timestamp}
+        lectura = {"ID_maquina": maquina, "timestamp": timestamp}
         for sensor in sensores:
             valor_anterior = ultimos_valores[maquina][sensor]
             nuevo_valor = generar_dato(sensor, valor_anterior)
