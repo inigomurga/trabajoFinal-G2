@@ -4,12 +4,13 @@ import logging
 import paho.mqtt.client as mqtt
 from elasticsearch import Elasticsearch
 from pydantic import BaseModel, Field, ValidationError
+from datetime import datetime
 
 # Configuración de logs
 LOG_DIR = "logs"
-LOG_FILE = os.path.join(LOG_DIR, "errores.log")
+LOG_FILE = os.path.join(LOG_DIR, "logs.log")
 os.makedirs(LOG_DIR, exist_ok=True)
-logging.basicConfig(filename=LOG_FILE, level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(filename=LOG_FILE, level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # Conexión a Elasticsearch
 es = Elasticsearch("http://localhost:9200")
@@ -18,7 +19,7 @@ INDEX_NAME = "sensores"
 # Validación con Pydantic específicas
 class SensorData(BaseModel):
     ID: str
-    timestamp: str
+    timestamp: datetime
     temperatura: float = Field(..., le=149)
     vibracion: float = Field(..., le=19)
     corriente_electrica: float = Field(..., le=99)

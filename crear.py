@@ -2,6 +2,7 @@ import random
 import time
 import json
 import paho.mqtt.client as mqtt
+from datetime import datetime, timezone
 
 # Definir los nombres de las máquinas y sensores
 maquinas = [f"maquina_{i+1}" for i in range(5)]
@@ -69,7 +70,7 @@ ultimo_dato = None  # Para duplicados
 
 while True:
     datos = []
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now(timezone.utc).isoformat()
 
     for maquina in maquinas:
         lectura = {"ID": maquina, "timestamp": timestamp}
