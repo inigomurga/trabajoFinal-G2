@@ -15,7 +15,7 @@ def generar_dato(sensor, valor_anterior):
     if random.random() < 0.03:
         return None
     # Probabilidad de dato atípico
-    if random.random() < 0.03:
+    if random.random() < 0.1:
         if sensor == "temperatura":
             return round(random.uniform(150, 300), 2)  # fuera de rango normal
         elif sensor == "vibracion":
@@ -38,14 +38,18 @@ def generar_dato(sensor, valor_anterior):
             return round(random.uniform(0, 10), 2)    # mm/s
         elif valor_anterior > 13:
             return valor_anterior - 3.3
+        elif valor_anterior < 0.5:
+            return valor_anterior + 3.3
         else:
             return round(valor_anterior + random.choice([-0.3, 0.4]), 2)
         
     elif sensor == "corriente_electrica":
         if valor_anterior is None or valor_anterior > 99:
             return round(random.uniform(0, 50), 2)    # amperios
-        elif valor_anterior > 65:
+        elif valor_anterior > 70:
             return valor_anterior - 8.17
+        elif valor_anterior < 2:
+            return valor_anterior + 4.17
         else:
             return round(valor_anterior + random.choice([-1.17, 1.18]), 2)
             

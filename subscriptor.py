@@ -20,10 +20,10 @@ INDEX_NAME = "sensores"
 class SensorData(BaseModel):
     ID_maquina: int
     timestamp: datetime
-    temperatura: float = Field(..., le=149)
-    vibracion: float = Field(..., le=19)
-    corriente_electrica: float = Field(..., le=99)
-    rpm_cabezal: int = Field(..., le=9999)
+    temperatura: float = Field(..., le=300)
+    vibracion: float = Field(..., le=50)
+    corriente_electrica: float = Field(..., le=200)
+    rpm_cabezal: int = Field(..., le=20000)
 
 # Funciones de MQTT al conectarse
 def on_connect(client, userdata, flags, rc):
