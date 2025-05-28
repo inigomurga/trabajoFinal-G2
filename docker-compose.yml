@@ -31,5 +31,26 @@ services:
     depends_on:
       - elasticsearch
 
+  crear:
+    build:
+      context: .
+      dockerfile: Dockerfile.crear
+    container_name: crear
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
+
+  suscriptor:
+    build:
+      context: .
+      dockerfile: Dockerfile.suscriptor
+    container_name: suscriptor
+    depends_on:
+      - mosquitto
+      - elasticsearch
+    restart: unless-stopped
+    env_file:
+      - .env
+
 volumes:
   esdata:
