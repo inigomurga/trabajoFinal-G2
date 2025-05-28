@@ -54,7 +54,7 @@ Por último, hemos tenido que crear un script para generar datos históricos de 
     ```
 2. Realiza lo mismo que en el anterior paso pero con este comando:
     ```bash
-    python subscriptor.py
+    python suscriptor.py
     ```
 3. Accede a kibana y haz click en "Stack Management" posteriormente en "Saved Objects" y finalmente en "Import" donde seleccionaras el ndjson que esta en la carpeta trabajoFinal-G.
 
