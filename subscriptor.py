@@ -91,7 +91,7 @@ def on_message(client, userdata, msg):
         if alertas:
             asunto = f"ALERTA IoT - Máquina {dato.ID_maquina}"
             mensaje = f"Se han detectado condiciones críticas en la máquina {dato.ID_maquina}:\n" + "\n".join(alertas) + f"\nTimestamp: {dato.timestamp}"
-            # enviar_alerta_email(asunto, mensaje)
+            enviar_alerta_email(asunto, mensaje)
 
     except ValidationError as ve:
         logging.warning(f"Dato inválido: {ve}")
