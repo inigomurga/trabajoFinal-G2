@@ -47,15 +47,18 @@ Por último, hemos tenido que crear un script para generar datos históricos de 
     ```
 
 ## Uso
-
-1. Abre una terminal de windows y desde la carpeta trabajoFinal-G2 ejecuta el siguiente comando:
+1. Lanza el docker compose:
+       ```bash
+    docker compose up -d
+    ```
+2. Abre una terminal de windows y desde la carpeta trabajoFinal-G2 ejecuta el siguiente comando:
     ```bash
     python crear.py
     ```
-2. Realiza lo mismo que en el anterior paso pero con este comando:
+3. Realiza lo mismo que en el anterior paso pero con este comando:
     ```bash
     python suscriptor.py
     ```
-3. Accede a kibana y haz click en "Stack Management" posteriormente en "Saved Objects" y finalmente en "Import" donde seleccionaras el ndjson que esta en la carpeta trabajoFinal-G.
+4. Accede a kibana y haz click en "Stack Management" posteriormente en "Saved Objects" y finalmente en "Import" donde seleccionaras el ndjson que esta en la carpeta trabajoFinal-G.
 
-4. Finalemente haz click en "Dashboards" donde estaran tanto el dashboard de monitoreo como el de analisis histórico.
+5. Finalemente haz click en "Dashboards" donde estaran tanto el dashboard de monitoreo como el de analisis histórico.
