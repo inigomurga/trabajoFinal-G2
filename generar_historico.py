@@ -53,6 +53,7 @@ def generar_dato(sensor, valor_anterior):
 # Generar CSV con timestamps
 def generar_csv(nombre_archivo="historico_sensores.csv", num_filas=50000):
     campos = ["temperatura", "vibracion", "corriente_electrica", "rpm_cabezal"]
+    maquinas = [i + 1 for i in range(5)]
     valores_anteriores = {campo: None for campo in campos}
     datos = []
 
@@ -60,9 +61,11 @@ def generar_csv(nombre_archivo="historico_sensores.csv", num_filas=50000):
     timestamp_inicial = datetime.now()
 
     for i in range(num_filas):
+        id_maquina = random.choice(maquinas)
         fila = {
             "fila": i + 1,
-            "timestamp": timestamp_inicial + timedelta(seconds=i)
+            "timestamp": timestamp_inicial + timedelta(seconds=i),
+            "id_maquina": id_maquina
         }
         for sensor in campos:
             valor = generar_dato(sensor, valores_anteriores[sensor])
