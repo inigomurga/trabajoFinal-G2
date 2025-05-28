@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   mosquitto:
     image: eclipse-mosquitto:2
@@ -30,27 +29,6 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-
-  crear:
-    build:
-      context: .
-      dockerfile: Dockerfile.crear
-    container_name: crear
-    depends_on:
-      - mosquitto
-    restart: unless-stopped
-
-  suscriptor:
-    build:
-      context: .
-      dockerfile: Dockerfile.suscriptor
-    container_name: suscriptor
-    depends_on:
-      - mosquitto
-      - elasticsearch
-    restart: unless-stopped
-    env_file:
-      - .env
 
 volumes:
   esdata:
